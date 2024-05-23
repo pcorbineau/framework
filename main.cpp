@@ -1,14 +1,22 @@
+#include "loop.hpp"
 #include "window.hpp"
 
 int main() {
-    auto window = Window::create(
-        Window::Config{.title = "Hello, World!", .width = 800, .height = 600});
-    if (!window) {
-        return 1;
+    Window window_array[3] = {
+        Window::create(
+            Window::Config{.title = "Window 1", .width = 400, .height = 300})
+            .value(),
+        Window::create(
+            Window::Config{.title = "Window 2", .width = 400, .height = 300})
+            .value(),
+        Window::create(
+            Window::Config{.title = "Window 3", .width = 400, .height = 300})
+            .value()};
+    for (auto &w : window_array) {
+        w.show();
     }
-    window->show();
 
-    // Loop::run();
+    Loop::run();
 
     return 0;
 }

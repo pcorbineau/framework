@@ -1,7 +1,9 @@
 #pragma once
 #include <Windows.h>
 #include <expected>
+#include <string>
 #include <string_view>
+
 
 class Window {
   public:
@@ -19,9 +21,12 @@ class Window {
     static std::expected<Window, Error> create(const Config &config);
 
     void show() const noexcept;
+    auto get_title() const noexcept -> std::string;
+
+    LRESULT windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
   private:
-    Window(HWND hwnd) noexcept : m_Hwnd(hwnd) {}
+    Window(const Config &config, const WNDCLASS &wndclass);
 
     HWND m_Hwnd;
 };
