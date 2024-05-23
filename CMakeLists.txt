@@ -7,6 +7,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(frameworklib)
 
 target_sources(frameworklib PRIVATE
+    loop.hpp
+    loop.cpp
     window.hpp
     window.cpp
 )
