@@ -11,9 +11,11 @@ target_sources(frameworklib PRIVATE
     loop.cpp
     window.hpp
     window.cpp
+    window_mode.hpp
 )
 
 target_compile_features(frameworklib PUBLIC cxx_std_23)
+target_include_directories(frameworklib PUBLIC .)
 
 add_executable(framework main.cpp)
 target_link_libraries(framework PRIVATE frameworklib)
