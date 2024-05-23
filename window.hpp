@@ -17,13 +17,14 @@ class Window {
         CreateWindowFailed,
     };
 
-    static std::expected<Window, Error> create(const Config &config);
+    static auto create(const Config &config) -> std::expected<Window, Error>;
 
     void show() const noexcept;
-    std::string get_title() const noexcept;
+    [[nodiscard]] auto get_title() const noexcept -> std::string;
     void toggle_fullscreen() noexcept;
 
-    LRESULT windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    auto windowProc(HWND hwnd, UINT uMsg, WPARAM wParam,
+                    LPARAM lParam) -> LRESULT;
 
   private:
     Window(const Config &config, const WNDCLASS &wndclass);
